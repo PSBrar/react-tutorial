@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
 
 //function App() {}
@@ -6,7 +6,15 @@ import './App.css'
 // using the props title below to change what's displayed in the card component
 
 const Card = ({ title }) => {
+    const [count, setCount] = useState(0)
+
+
+    //useState is a hook, allowing for states, this is the way to make it
     const [hasLiked, setHasLiked] = useState(false);
+
+    useEffect(() => {
+        console.log(`${title} has been liked ${hasLiked} times`);
+    });
 
     return(
         /*<div style={{
@@ -22,8 +30,11 @@ const Card = ({ title }) => {
         //curly braces make the thing dynamic
 
 
-        <div className="card">
-            <h2>{title}</h2>
+
+        //something to remember is to never alter the value of the state by using the state itself
+        //instead use another () function and alter the prevState
+        <div className="card" onClick={() => setCount((prevState) => prevState+1) }/*onClick={() => setCount(count + 1)}*/>
+            <h2>{title} <br/> {count}</h2>
             <button onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? 'Liked' : 'Like'}
             </button>
