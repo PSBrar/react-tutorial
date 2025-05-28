@@ -146,7 +146,7 @@ me to copy and paste the whole file from the author's github*/
 }
 
 @utility text-gradient {
-    @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+    @apply bg-linear-to-r from-[#FF0D96] to-[#AB8BFF] bg-clip-text text-transparent;
 }
 
 @utility fancy-text {
