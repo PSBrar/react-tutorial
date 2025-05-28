@@ -14,9 +14,16 @@ const Card = ({ title }) => {
 
     useEffect(() => {
         console.log(`${title} has been liked ${hasLiked} times`);
-    });
+    }, [hasLiked, title]); //deps allow use to only run this useEffect if the var passed in changes
+
+    useEffect(() => {
+        console.log('card rendered')
+    }, []);
+
+
 
     return(
+        //inline styles take priority over css in files, something to remember
         /*<div style={{
             border: '1px solid black',
             padding: '20px',
@@ -34,7 +41,7 @@ const Card = ({ title }) => {
         //something to remember is to never alter the value of the state by using the state itself
         //instead use another () function and alter the prevState
         <div className="card" onClick={() => setCount((prevState) => prevState+1) }/*onClick={() => setCount(count + 1)}*/>
-            <h2>{title} <br/> {count}</h2>
+            <h2>{title} <br/> {count ? count: null}</h2>
             <button onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? 'Liked' : 'Like'}
             </button>
