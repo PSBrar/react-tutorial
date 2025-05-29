@@ -20,7 +20,7 @@ me to copy and paste the whole file from the author's github*/
 
     --breakpoint-xs: 480px;
 
-    --background-image-hero-pattern: url("/hero-bg.png");
+    --background-image-hero-pattern: url("hero-bg.png");
 }
 
 @layer base {
@@ -109,6 +109,10 @@ me to copy and paste the whole file from the author's github*/
 
         & img {
             @apply rounded-lg h-auto w-full;
+        }
+
+        & a:hover{
+            @apply text-gradient;
         }
 
         & h3 {

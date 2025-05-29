@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MovieCard = ({movie: {title, vote_average,
+const MovieCard = ({movie: {id, title, vote_average,
     poster_path, release_date, original_language }}) => {
     return (
         <div className="movie-card">
@@ -10,7 +10,7 @@ const MovieCard = ({movie: {title, vote_average,
             alt={title}/>
 
             <div className={"mt-4"}>
-                <h3>{title}</h3>
+                <h3><a href={`https://www.themoviedb.org/movie/${id}`}>{title}</a></h3>
 
                 <div className={"content"}>
                     <div className={"rating"}>

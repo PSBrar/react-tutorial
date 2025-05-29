@@ -86,9 +86,9 @@ const App = () => {
 
 
                     {isLoading ? (
-                        <p className={"text-white"}>
+                        <div className={"text-white"}>
                             <Spinner/>
-                        </p>
+                        </div>
                     ) : errorMsg ? (
                         <p className={"text-red-500"}>
                             {errorMsg}
@@ -97,7 +97,7 @@ const App = () => {
                         <ul>
                             {movieList.map((movie) => {
                                 return (
-                                    <MovieCard movie={movie}/>
+                                    <MovieCard key={movie.id} movie={movie}/>
                                 )
                             })}
                         </ul>
