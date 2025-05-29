@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Search from "./components/Search.jsx";
 import Spinner from "./components/Spinner.jsx";
 import MovieCard from "./components/MovieCard.jsx";
+import {useDebounce} from "react-use";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -18,6 +19,13 @@ const App = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const [movieList, setMovieList] = useState([])
     const [isLoading, setIsLoading] = useState(false);
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+
+    //Debounce the search term to avoid unnecessary API calls
+    // by waiting for 500ms after the last keystroke
+    useDebounce(() => {
+        setDebouncedSearchTerm(searchTerm)
+    }, 500, [searchTerm])
 
     const fetchMovies = async(query = '') => {
         setIsLoading(true);
@@ -56,9 +64,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        fetchMovies(searchTerm);
-
-    }, [searchTerm]) //empty deps will mean that will only one run once, at loadtime
+        fetchMovies(debouncedSearchTerm);
+    }, [debouncedSearchTerm]) //empty deps will mean that will only one run once, at loadtime
 
     return (
         <main>
