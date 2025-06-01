@@ -63,6 +63,11 @@ const App = () => {
         }
     }
 
+    //updateSearchTerm method would use appwrite to create a trending movies section. What the method would do:
+    //1. Use Appwrite sdk to check if the search term exists in the db
+    //2. If it does update the count
+    //3. If it doesn't, create a new document with the search term and update the count of 1
+
     useEffect(() => {
         fetchMovies(debouncedSearchTerm);
     }, [debouncedSearchTerm]) //empty deps will mean that will only one run once, at loadtime
